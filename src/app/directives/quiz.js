@@ -30,6 +30,7 @@ angular.module( "lernquiz" )
 							choice.choosen = true;
 							scope.showAnswer = true;
 							scope.comment = choice.correct ? "Die Antwort war richtig!" : "Die Antwort war leider falsch!";
+							scope.answerCorrect = choice.correct;
 
 							scope.counts.total++;
 							if ( choice.correct ) scope.counts.correct++;
@@ -40,7 +41,7 @@ angular.module( "lernquiz" )
 					scope.next =
 						function()
 						{
-							quizService.nextQuestion(
+							quizService.bundeslaenderUndHauptstaedte(
 								function( data )
 								{
 									scope.showAnswer = false;

@@ -60,7 +60,7 @@ angular.module( "lernquiz" )
 
 		var q = {};
 
-		q.nextQuestion =
+		q.bundeslaenderUndHauptstaedte =
 			function( fn )
 			{
 				var isIn =
