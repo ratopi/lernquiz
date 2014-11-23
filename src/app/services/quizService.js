@@ -80,6 +80,13 @@ angular.module( "lernquiz" )
 
 		// ---
 
+		var last = {
+			quizIndex: -1,
+			questionIndex: -1
+		};
+
+		// ---
+
 		var q = {};
 
 		q.bundeslaenderUndHauptstaedte =
@@ -92,15 +99,25 @@ angular.module( "lernquiz" )
 						return false;
 					};
 
+				var quiz, question;
+				var quizIndex, questionIndex;
 
-				var quiz = quizDef[ Math.floor( Math.random() * quizDef.length ) ];
-				var n = Math.floor( Math.random() * quiz.questions.length );
-				var q = quiz.questions[ n ];
+				do
+				{
+					quizIndex = Math.floor( Math.random() * quizDef.length );
+					quiz = quizDef[ quizIndex ];
+					questionIndex = Math.floor( Math.random() * quiz.questions.length );
+					question = quiz.questions[ questionIndex ];
+				}
+				while ( quizIndex === last.quizIndex &&  questionIndex === last.questionIndex );
+
+                last.quizIndex = quizIndex;
+                last.questionIndex = questionIndex;
 
 				// --- add correct answer at beginnig
 
 				var choices = [
-					{ "text": q.answer, "correct": true }
+					{ "text": question.answer, "correct": true }
 				];
 
 				// --- add some different random answers
@@ -133,8 +150,8 @@ angular.module( "lernquiz" )
 
 				var o =
 					{
-						"question": quiz.question.replace( /%/, q.text ),
-						"image": q.image,
+						"question": quiz.question.replace( /%/, question.text ),
+						"image": question.image,
 						"choices": choices
 					};
 
