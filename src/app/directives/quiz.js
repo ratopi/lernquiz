@@ -47,6 +47,7 @@ angular.module( "lernquiz" )
 									scope.showAnswer = false;
 									scope.comment = "";
 									scope.question = data.question;
+									scope.image = data.image;
 									scope.choices = data.choices;
 								}
 							);
