@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{question}}</h3>
+	</div>
+	<div class="panel-body" data-ng-if="!showAnswer">
+		<div class="btn-group-vertical" role="group">
+			<button class="btn btn-default" data-ng-repeat="choice in choices" data-ng-click="choosen(choice)">
+				{{choice.text}}
+			</button>
+		</div>
+	</div>
+	<div class="panel-body" data-ng-if="showAnswer">
+		<div class="btn-group-vertical" role="group">
+			<button class="btn btn-default disabled" data-ng-repeat="choice in choices" data-ng-class="{'btn-success':choice.correct, 'btn-danger':choice.choosen && ! choice.correct}">
+				<i data-ng-if="choice.correct" class="fa fa-check"></i>
+				<i data-ng-if="choice.choosen && ! choice.correct" class="fa fa-times"></i>
+				{{choice.text}}
+			</button>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<button class="btn btn-default" data-ng-disabled="!showAnswer" data-ng-click="next()">Weiter</button>
+		<span class="pull-right">{{comment}}</span>
+	</div>
+</div>
