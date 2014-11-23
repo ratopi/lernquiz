@@ -17,6 +17,11 @@ angular.module( "lernquiz" )
 					scope.showAnswer = false;
 					scope.comment = "";
 
+					scope.counts = {
+						"total": 0,
+						"correct": 0
+					};
+
 					// ---
 
 					scope.choosen =
@@ -25,6 +30,9 @@ angular.module( "lernquiz" )
 							choice.choosen = true;
 							scope.showAnswer = true;
 							scope.comment = choice.correct ? "Die Antwort war richtig!" : "Die Antwort war leider falsch!";
+
+							scope.counts.total++;
+							if ( choice.correct ) scope.counts.correct++;
 						};
 
 					// ---
