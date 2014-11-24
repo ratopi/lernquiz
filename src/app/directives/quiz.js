@@ -53,7 +53,7 @@ angular.module( "lernquiz" )
 							);
 						};
 
-					// ---
+					// --- start quiz by calling 'next'-function, when quizService is ready
 
 					scope.next();
 				}

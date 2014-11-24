@@ -1,0 +1,24 @@
+{
+	"title": "Hauptstädte von Bundesländern",
+	"description": "Errate die Hauptstadt eines Bundeslandes.",
+
+	"question": "Was ist die Hauptstadt von %?",
+	"questions": [
+		{ "text": "Baden-Württemberg", "answer": "Stuttgart" },
+		{ "text": "Bayern", "answer": "München" },
+		{ "text": "Berlin", "answer": "Berlin" },
+		{ "text": "Brandenburg", "answer": "Potsdam" },
+		{ "text": "Bremen", "answer": "Bremen" },
+		{ "text": "Hamburg", "answer": "Hamburg" },
+		{ "text": "Hessen", "answer": "Wiesbaden" },
+		{ "text": "Mecklenburg-Vorpommern", "answer": "Schwerin" },
+		{ "text": "Niedersachsen", "answer": "Hannover" },
+		{ "text": "Nordrhein-Westfalen", "answer": "Düsseldorf" },
+		{ "text": "Rheinland-Pfalz", "answer": "Mainz" },
+		{ "text": "Saarland", "answer": "Saarbrücken" },
+		{ "text": "Sachsen", "answer": "Dresden" },
+		{ "text": "Sachsen-Anhalt", "answer": "Magdeburg" },
+		{ "text": "Schleswig-Holstein", "answer": "Kiel" },
+		{ "text": "Thüringen", "answer": "Erfurt" }
+	]
+}

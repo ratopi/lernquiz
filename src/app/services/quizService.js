@@ -7,76 +7,45 @@ angular.module( "lernquiz" )
 	{
 		var choiceCount = 5;
 
-		var quizDef = [
+		var quizDef = [];
 
+		var loadCount = 10000;
+
+		var readyCallbacks = [];
+
+		$http
+			.get( "quiz/0.json" )
+			.success(
+				function( data )
+				{
+					loadCount = data.quizes.length;
+
+					for ( var idx in data.quizes )
+					{
+                        $http
+                            .get( "quiz/" + data.quizes[ idx ] )
+                            .success(
+								function( data )
+								{
+									data.active = false;
+									quizDef.push( data );
+									loadCount--;
+									if ( loadCount === 0 )
+									{
+										for ( var idx in readyCallbacks ) readyCallbacks[ idx ]();
+										readyCallbacks = null;
+									}
+								}
+                            );
+					}
+				}
+			);
+
+		var registerReadyCallback =
+			function( fn )
 			{
-				"question": "Was ist die Hauptstadt von %?",
-				"questions": [
-					{ "text": "Baden-Württemberg", "answer": "Stuttgart" },
-					{ "text": "Bayern", "answer": "München" },
-					{ "text": "Berlin", "answer": "Berlin" },
-					{ "text": "Brandenburg", "answer": "Potsdam" },
-					{ "text": "Bremen", "answer": "Bremen" },
-					{ "text": "Hamburg", "answer": "Hamburg" },
-					{ "text": "Hessen", "answer": "Wiesbaden" },
-					{ "text": "Mecklenburg-Vorpommern", "answer": "Schwerin" },
-					{ "text": "Niedersachsen", "answer": "Hannover" },
-					{ "text": "Nordrhein-Westfalen", "answer": "Düsseldorf" },
-					{ "text": "Rheinland-Pfalz", "answer": "Mainz" },
-					{ "text": "Saarland", "answer": "Saarbrücken" },
-					{ "text": "Sachsen", "answer": "Dresden" },
-					{ "text": "Sachsen-Anhalt", "answer": "Magdeburg" },
-					{ "text": "Schleswig-Holstein", "answer": "Kiel" },
-					{ "text": "Thüringen", "answer": "Erfurt" },
-				]
-			},
-
-			{
-				"question": "Von welchem Bundesland ist % die Hauptstadt?",
-				"questions": [
-					{ "answer": "Baden-Württemberg", "text": "Stuttgart" },
-					{ "answer": "Bayern", "text": "München" },
-					{ "answer": "Berlin", "text": "Berlin" },
-					{ "answer": "Brandenburg", "text": "Potsdam" },
-					{ "answer": "Bremen", "text": "Bremen" },
-					{ "answer": "Hamburg", "text": "Hamburg" },
-					{ "answer": "Hessen", "text": "Wiesbaden" },
-					{ "answer": "Mecklenburg-Vorpommern", "text": "Schwerin" },
-					{ "answer": "Niedersachsen", "text": "Hannover" },
-					{ "answer": "Nordrhein-Westfalen", "text": "Düsseldorf" },
-					{ "answer": "Rheinland-Pfalz", "text": "Mainz" },
-					{ "answer": "Saarland", "text": "Saarbrücken" },
-					{ "answer": "Sachsen", "text": "Dresden" },
-					{ "answer": "Sachsen-Anhalt", "text": "Magdeburg" },
-					{ "answer": "Schleswig-Holstein", "text": "Kiel" },
-					{ "answer": "Thüringen", "text": "Erfurt" },
-				]
-			},
-
-			{
-				"question": "Welches Bundesland ist markiert?",
-				"questions": [
-					{ "answer": "Baden-Württemberg", "image": "images/baden-wuerttemberg.png" },
-					{ "answer": "Bayern", "image": "images/bayern.png" },
-					{ "answer": "Berlin", "image": "images/berlin.png" },
-					{ "answer": "Brandenburg", "image": "images/brandenburg.png" },
-					{ "answer": "Bremen", "image": "images/bremen.png" },
-					{ "answer": "Hamburg", "image": "images/hamburg.png" },
-					{ "answer": "Hessen", "image": "images/hessen.png" },
-					{ "answer": "Mecklenburg-Vorpommern", "image": "images/mecklenburg-vorpommern.png" },
-					{ "answer": "Niedersachsen", "image": "images/niedersachsen.png" },
-					{ "answer": "Nordrhein-Westfalen", "image": "images/nordrhein-westfalen.png" },
-					{ "answer": "Rheinland-Pfalz", "image": "images/rheinland-pfalz.png" },
-					{ "answer": "Saarland", "image": "images/saarland.png" },
-					{ "answer": "Sachsen", "image": "images/sachsen.png" },
-					{ "answer": "Sachsen-Anhalt", "image": "images/sachsen-anhalt.png" },
-					{ "answer": "Schleswig-Holstein", "image": "images/schleswig-holstein.png" },
-					{ "answer": "Thüringen", "image": "images/thueringen.png" },
-				]
-			},
-
-		];
-
+				loadCount === 0 ? fn() : readyCallbacks.push( fn );
+			};
 
 		// ---
 
@@ -89,9 +58,29 @@ angular.module( "lernquiz" )
 
 		var q = {};
 
+		q.getAvailableQuizes =
+			function( fn )
+			{
+                if ( loadCount > 0 )
+                {
+                    registerReadyCallback( function() { q.getAvailableQuizes( fn ); } );
+                }
+                else
+                {
+                    fn( quizDef ); // TODO
+                }
+			};
+
 		q.bundeslaenderUndHauptstaedte =
 			function( fn )
 			{
+				if ( loadCount > 0 )
+				{
+					registerReadyCallback( function() { q.bundeslaenderUndHauptstaedte( fn ); } );
+					return;
+				}
+
+
 				var isIn =
 					function( array, item )
 					{

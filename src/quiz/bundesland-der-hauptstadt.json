@@ -1,0 +1,24 @@
+{
+	"title": "Bundesland einer Hauptstadt",
+	"description": "Errate das Bundesland, welches zu einer Hauptstadt gehört.",
+
+	"question": "Von welchem Bundesland ist % die Hauptstadt?",
+	"questions": [
+		{ "answer": "Baden-Württemberg", "text": "Stuttgart" },
+		{ "answer": "Bayern", "text": "München" },
+		{ "answer": "Berlin", "text": "Berlin" },
+		{ "answer": "Brandenburg", "text": "Potsdam" },
+		{ "answer": "Bremen", "text": "Bremen" },
+		{ "answer": "Hamburg", "text": "Hamburg" },
+		{ "answer": "Hessen", "text": "Wiesbaden" },
+		{ "answer": "Mecklenburg-Vorpommern", "text": "Schwerin" },
+		{ "answer": "Niedersachsen", "text": "Hannover" },
+		{ "answer": "Nordrhein-Westfalen", "text": "Düsseldorf" },
+		{ "answer": "Rheinland-Pfalz", "text": "Mainz" },
+		{ "answer": "Saarland", "text": "Saarbrücken" },
+		{ "answer": "Sachsen", "text": "Dresden" },
+		{ "answer": "Sachsen-Anhalt", "text": "Magdeburg" },
+		{ "answer": "Schleswig-Holstein", "text": "Kiel" },
+		{ "answer": "Thüringen", "text": "Erfurt" }
+	]
+}
