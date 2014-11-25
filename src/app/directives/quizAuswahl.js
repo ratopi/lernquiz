@@ -15,15 +15,6 @@ angular.module( "lernquiz" )
 					scope.quizes = [];
 					scope.startAllowed = false;
 
-					quizService.getAvailableQuizes(
-						function( data )
-						{
-							scope.quizes = data;
-							setStartAllowed();
-						}
-					);
-
-
 					var setStartAllowed =
 						function()
 						{
@@ -37,6 +28,16 @@ angular.module( "lernquiz" )
                                 }
 							}
 						};
+
+					// ---
+
+					quizService.getAvailableQuizes(
+						function( data )
+						{
+							scope.quizes = data;
+							setStartAllowed();
+						}
+					);
 
 					// ---
 
