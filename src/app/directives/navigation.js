@@ -13,7 +13,7 @@ angular.module( "lernquiz" )
 				{
 					scope.appInfo = {
 						"shortname": "LernQuiz",
-						"release": "0.4",
+						"release": "0.5",
 					};
 				}
 		};

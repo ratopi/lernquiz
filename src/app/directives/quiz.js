@@ -2,8 +2,8 @@ angular.module( "lernquiz" )
 .directive(
 "quiz",
 [
-	"quizService",
-	function ( quizService )
+	"quizService", "$location",
+	function ( quizService, $location )
 	{
 		return {
 			"restrict": "AE",
@@ -41,14 +41,22 @@ angular.module( "lernquiz" )
 					scope.next =
 						function()
 						{
-							quizService.bundeslaenderUndHauptstaedte(
+							quizService.nextQuestion(
 								function( data )
 								{
-									scope.showAnswer = false;
-									scope.comment = "";
-									scope.question = data.question;
-									scope.image = data.image;
-									scope.choices = data.choices;
+									if ( data === null )
+									{
+										// TODO: Do redirect!
+										console.log( "TODO: Do redirect!" );
+									}
+									else
+									{
+										scope.showAnswer = false;
+										scope.comment = "";
+										scope.question = data.question;
+										scope.image = data.image;
+										scope.choices = data.choices;
+									}
 								}
 							);
 						};

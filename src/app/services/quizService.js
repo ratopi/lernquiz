@@ -47,6 +47,20 @@ angular.module( "lernquiz" )
 				loadCount === 0 ? fn() : readyCallbacks.push( fn );
 			};
 
+		var noQuizIsActive =
+			function()
+			{
+				for ( var idx in quizDef )
+				{
+					if ( quizDef[ idx ].active )
+					{
+						return false;
+					}
+				}
+
+				return true;
+			};
+
 		// ---
 
 		var last = {
@@ -71,15 +85,25 @@ angular.module( "lernquiz" )
                 }
 			};
 
-		q.bundeslaenderUndHauptstaedte =
+		q.nextQuestion =
 			function( fn )
 			{
 				if ( loadCount > 0 )
 				{
-					registerReadyCallback( function() { q.bundeslaenderUndHauptstaedte( fn ); } );
+					registerReadyCallback( function() { q.nextQuestion( fn ); } );
 					return;
 				}
 
+
+				// ---
+
+				if ( noQuizIsActive() )
+				{
+					fn( null );
+					return;
+				}
+
+				// ---
 
 				var isIn =
 					function( array, item )
@@ -98,7 +122,7 @@ angular.module( "lernquiz" )
 					questionIndex = Math.floor( Math.random() * quiz.questions.length );
 					question = quiz.questions[ questionIndex ];
 				}
-				while ( quizIndex === last.quizIndex &&  questionIndex === last.questionIndex );
+				while ( ! quiz.active  || ( quizIndex === last.quizIndex  &&  questionIndex === last.questionIndex ) );
 
                 last.quizIndex = quizIndex;
                 last.questionIndex = questionIndex;

@@ -13,6 +13,7 @@ angular.module( "lernquiz" )
 				function (scope, elem, attr)
 				{
 					scope.quizes = [];
+					scope.startAllowed = false;
 
 					quizService.getAvailableQuizes(
 						function( data )
@@ -21,14 +22,33 @@ angular.module( "lernquiz" )
 						}
 					);
 
+
+					var setStartAllowed =
+						function()
+						{
+							scope.startAllowed = false;
+							for ( var idx in scope.quizes )
+							{
+                                if ( scope.quizes[ idx ].active )
+                                {
+                                    scope.startAllowed = true;
+                                    break;
+                                }
+							}
+						};
+
 					// ---
 
 					scope.toggle =
 						function( quiz )
 						{
-							console.log( quiz );
 							quiz.active = ! quiz.active;
+							setStartAllowed();
 						};
+
+					// ---
+
+					setStartAllowed();
 				}
 		};
 	}
