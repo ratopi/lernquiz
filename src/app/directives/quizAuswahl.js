@@ -19,6 +19,7 @@ angular.module( "lernquiz" )
 						function( data )
 						{
 							scope.quizes = data;
+							setStartAllowed();
 						}
 					);
 
@@ -45,10 +46,6 @@ angular.module( "lernquiz" )
 							quiz.active = ! quiz.active;
 							setStartAllowed();
 						};
-
-					// ---
-
-					setStartAllowed();
 				}
 		};
 	}
