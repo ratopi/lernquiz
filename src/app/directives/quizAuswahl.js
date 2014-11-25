@@ -14,10 +14,12 @@ angular.module( "lernquiz" )
 				{
 					scope.quizes = [];
 					scope.startAllowed = false;
+					scope.loading = true;
 
 					var setStartAllowed =
 						function()
 						{
+							scope.loading = false;
 							scope.startAllowed = false;
 							for ( var idx in scope.quizes )
 							{

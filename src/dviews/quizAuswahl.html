@@ -1,8 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Quiz-Auswahl</h3>
+		<h3 class="panel-title">Quiz-Auswahl </h3>
 	</div>
 	<div class="panel-body">
+		<i class="fa fa-refresh fa-spin" data-ng-if="loading"></i>
 		<div class="btn-group-vertical" role="group">
 			<button class="btn btn-default" data-ng-repeat="quiz in quizes" data-ng-click="toggle(quiz)" data-ng-class="{'active':quiz.active,'btn-success':quiz.active}">
 				{{quiz.title}}
