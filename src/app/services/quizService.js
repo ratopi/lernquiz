@@ -27,7 +27,7 @@ angular.module( "lernquiz" )
                             .success(
 								function( data )
 								{
-									data.active = true;
+									data.active = false;
 									quizDef.push( data );
 									loadCount--;
 									if ( loadCount === 0 )
