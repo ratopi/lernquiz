@@ -1,0 +1,24 @@
+{
+	"title": "Flaggen der Bundesländer",
+	"description": "Errate zu welchem Bundesland die gezeigte Flagge gehört.",
+
+	"question": "Zu welchem Bundesland gehört die Flagge?",
+	"questions": [
+		{ "answer": "Baden-Württemberg", "image": "images/flaggen/baden-wuerttemberg.png" },
+		{ "answer": "Bayern", "image": "images/flaggen/bayern.png" },
+		{ "answer": "Berlin", "image": "images/flaggen/berlin.png" },
+		{ "answer": "Brandenburg", "image": "images/flaggen/brandenburg.png" },
+		{ "answer": "Bremen", "image": "images/flaggen/bremen.png" },
+		{ "answer": "Hamburg", "image": "images/flaggen/hamburg.png" },
+		{ "answer": "Hessen", "image": "images/flaggen/hessen.png" },
+		{ "answer": "Mecklenburg-Vorpommern", "image": "images/flaggen/mecklenburg-vorpommern.png" },
+		{ "answer": "Niedersachsen", "image": "images/flaggen/niedersachsen.png" },
+		{ "answer": "Nordrhein-Westfalen", "image": "images/flaggen/nordrhein-westfalen.png" },
+		{ "answer": "Rheinland-Pfalz", "image": "images/flaggen/rheinland-pfalz.png" },
+		{ "answer": "Saarland", "image": "images/flaggen/saarland.png" },
+		{ "answer": "Sachsen", "image": "images/flaggen/sachsen.png" },
+		{ "answer": "Sachsen-Anhalt", "image": "images/flaggen/sachsen-anhalt.png" },
+		{ "answer": "Schleswig-Holstein", "image": "images/flaggen/schleswig-holstein.png" },
+		{ "answer": "Thüringen", "image": "images/flaggen/thueringen.png" }
+	]
+}

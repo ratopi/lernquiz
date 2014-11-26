@@ -2,6 +2,8 @@
 	"quizes": [
 		"bundesland-der-hauptstadt.json",
 		"hauptstaedte-von-bundeslaendern.json",
-		"wo-sind-die-bundeslaender.json"
+		"wo-sind-die-bundeslaender.json",
+		"wappen-der-bundeslaender.json",
+		"flaggen-der-bundeslaender.json"
 	]
 }
