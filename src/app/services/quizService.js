@@ -22,21 +22,28 @@ angular.module( "lernquiz" )
 
 					for ( var idx in data.quizes )
 					{
-                        $http
-                            .get( "quiz/" + data.quizes[ idx ] )
-                            .success(
-								function( data )
-								{
-									data.active = false;
-									quizDef.push( data );
-									loadCount--;
-									if ( loadCount === 0 )
-									{
-										for ( var idx in readyCallbacks ) readyCallbacks[ idx ]();
-										readyCallbacks = null;
-									}
-								}
-                            );
+						quizDef.push( { "loading": true } );
+
+						(
+							function( idx )
+							{
+								$http
+									.get( "quiz/" + data.quizes[ idx ] )
+									.success(
+										function( data )
+										{
+											data.active = false;
+											quizDef[ idx ] = data;
+											loadCount--;
+											if ( loadCount === 0 )
+											{
+												for ( var j in readyCallbacks ) readyCallbacks[ j ]();
+												readyCallbacks = null;
+											}
+										}
+									);
+							}
+						)( idx );
 					}
 				}
 			);
@@ -75,14 +82,14 @@ angular.module( "lernquiz" )
 		q.getAvailableQuizes =
 			function( fn )
 			{
-                if ( loadCount > 0 )
-                {
-                    registerReadyCallback( function() { q.getAvailableQuizes( fn ); } );
-                }
-                else
-                {
-                    fn( quizDef ); // TODO
-                }
+				if ( loadCount > 0 )
+				{
+					registerReadyCallback( function() { q.getAvailableQuizes( fn ); } );
+				}
+				else
+				{
+					fn( quizDef ); // TODO
+				}
 			};
 
 		q.nextQuestion =
@@ -124,8 +131,8 @@ angular.module( "lernquiz" )
 				}
 				while ( ! quiz.active  || ( quizIndex === last.quizIndex  &&  questionIndex === last.questionIndex ) );
 
-                last.quizIndex = quizIndex;
-                last.questionIndex = questionIndex;
+				last.quizIndex = quizIndex;
+				last.questionIndex = questionIndex;
 
 				// --- add correct answer at beginnig
 
@@ -154,9 +161,9 @@ angular.module( "lernquiz" )
 				var changeIndex = Math.floor( Math.random() * choiceCount );
 				if ( changeIndex > 0 )
 				{
-                    var a = choices[ changeIndex ];
-                    choices[ changeIndex ] = choices[ 0 ];
-                    choices[ 0 ] = a;
+					var a = choices[ changeIndex ];
+					choices[ changeIndex ] = choices[ 0 ];
+					choices[ 0 ] = a;
 				}
 
 				// ---
