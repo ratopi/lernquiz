@@ -5,7 +5,14 @@ angular.module( "lernquiz" )
 	"$http",
 	function ( $http )
 	{
-		var choiceCount = 5;
+		var levels = [
+			{ "name": "simpel", "choiceCount": 3 },
+			{ "name": "leicht", "choiceCount": 4 },
+			{ "name": "moderat", "choiceCount": 5 },
+			{ "name": "schwierig", "choiceCount": 7 },
+		];
+
+		var level = levels[ 2 ];
 
 		var quizDef = [];
 
@@ -79,6 +86,21 @@ angular.module( "lernquiz" )
 
 		var q = {};
 
+		// ---
+
+		q.getLevelsOfDifficulty =
+			function()
+			{
+				return difficultyLevels;
+			};
+
+		q.setLevelOfDifficulty =
+			function( n )
+			{
+			};
+
+		// ---
+
 		q.getAvailableQuizes =
 			function( fn )
 			{
@@ -91,6 +113,8 @@ angular.module( "lernquiz" )
 					fn( quizDef ); // TODO
 				}
 			};
+
+		// ---
 
 		q.nextQuestion =
 			function( fn )
@@ -142,7 +166,7 @@ angular.module( "lernquiz" )
 
 				// --- add some different random answers
 
-				for ( var i = 1; i < choiceCount; i++ )
+				for ( var i = 1; i < level.choiceCount; i++ )
 				{
 					var answer;
 					do
@@ -158,7 +182,7 @@ angular.module( "lernquiz" )
 
 				// --- now shuffle correct answer to random position
 
-				var changeIndex = Math.floor( Math.random() * choiceCount );
+				var changeIndex = Math.floor( Math.random() * level.choiceCount );
 				if ( changeIndex > 0 )
 				{
 					var a = choices[ changeIndex ];
