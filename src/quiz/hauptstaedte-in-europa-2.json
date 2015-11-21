@@ -1,7 +1,7 @@
 {
 	"category": "Erdkunde",
-	"title": "Hauptstädte in Europa 2",
-	"description": "Errate den Staat der Hauptstadt eines Staates in Europa.",
+	"title": "Staaten der Hauptstädte in Europa",
+	"description": "Errate die Hauptstadt eines Staates in Europa.",
 
 	"question": "Was ist die Hauptstadt %?",
 	"questions": [
