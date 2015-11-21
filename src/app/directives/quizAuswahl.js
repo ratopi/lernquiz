@@ -1,42 +1,50 @@
 angular.module( "lernquiz" )
-.directive(
-"quizAuswahl",
-[
-	"quizService",
-	function ( quizService )
-	{
-		return {
-			"restrict": "AE",
-			"templateUrl": "dviews/quizAuswahl.html",
-			"scope": {},
-			"link":
-				function (scope, elem, attr)
+	.directive(
+	"quizAuswahl",
+	[
+		"quizService",
+		function ( quizService )
+		{
+			return {
+				"restrict": "AE",
+				"templateUrl": "app/dviews/quizAuswahl.html",
+				"scope": {},
+				"link": function ( scope, elem, attr )
 				{
 					scope.quizes = [];
 					scope.startAllowed = false;
 					scope.loading = true;
 
 					var setStartAllowed =
-						function()
+						function ()
 						{
 							scope.loading = false;
 							scope.startAllowed = false;
 							for ( var idx in scope.quizes )
 							{
-                                if ( scope.quizes[ idx ].active )
-                                {
-                                    scope.startAllowed = true;
-                                    break;
-                                }
+								if ( scope.quizes.hasOwnProperty( idx ) && scope.quizes[ idx ].active )
+								{
+									scope.startAllowed = true;
+									break;
+								}
 							}
 						};
 
 					// ---
 
 					quizService.getAvailableQuizes(
-						function( data )
+						function ( quizes, levels )
 						{
-							scope.quizes = data;
+							scope.quizes = quizes;
+							scope.levels = levels;
+
+							levels.forEach(
+								function ( l )
+								{
+									if ( l.selected ) scope.level = l;
+								}
+							);
+
 							setStartAllowed();
 						}
 					);
@@ -44,13 +52,21 @@ angular.module( "lernquiz" )
 					// ---
 
 					scope.toggle =
-						function( quiz )
+						function ( quiz )
 						{
 							quiz.active = ! quiz.active;
 							setStartAllowed();
 						};
+
+					// ---
+
+					scope.setLevel =
+						function ()
+						{
+							quizService.setLevel( scope.level );
+						}
 				}
-		};
-	}
-]
+			};
+		}
+	]
 );

@@ -8,5 +8,28 @@
 		"staatsflaggen.json",
 		"hauptstaedte-in-europa.json",
 		"hauptstaedte-in-europa-2.json"
-	]
+	],
+	"levels": [
+		{
+			"name": "simpel",
+			"choiceCount": 3
+		},
+		{
+			"name": "leicht",
+			"choiceCount": 4
+		},
+		{
+			"name": "moderat",
+			"choiceCount": 5
+		},
+		{
+			"name": "schwierig",
+			"choiceCount": 7
+		},
+		{
+			"name": "noch schwieriger",
+			"choiceCount": 11
+		}
+	],
+	"defaultLevel": 2
 }

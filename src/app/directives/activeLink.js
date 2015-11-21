@@ -1,14 +1,13 @@
 angular.module( "lernquiz" ).
-directive(
-"activeLink",
-[
-	"$location",
-	function ( location )
-	{
-		return {
-			"restrict": "A",
-			"link":
-				function ( scope, element, attrs, controller )
+	directive(
+	"activeLink",
+	[
+		"$location",
+		function ( location )
+		{
+			return {
+				"restrict": "A",
+				"link": function ( scope, element, attrs, controller )
 				{
 					var cssClass = attrs.activeLink;
 
@@ -18,14 +17,20 @@ directive(
 
 					scope.$watch(
 						"location.path()",
-						function( newPath )
+						function ( newPath )
 						{
-							if (path === newPath) { element.addClass( cssClass ); }
-							else { element.removeClass( cssClass ); }
+							if ( path === newPath )
+							{
+								element.addClass( cssClass );
+							}
+							else
+							{
+								element.removeClass( cssClass );
+							}
 						}
 					);
 				}
-		};
-	}
-]
+			};
+		}
+	]
 );

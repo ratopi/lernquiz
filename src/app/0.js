@@ -1,19 +1,17 @@
-
 angular
+	.module( "lernquiz", [ "ngRoute" ] )
+	.config(
+	[
+		"$routeProvider", "$httpProvider",
+		function ( $routeProvider, $httpProvider )
+		{
+			$routeProvider
 
-.module( "lernquiz", [ "ngRoute" ] )
+				.when( "/", { "templateUrl": "app/views/start.html" } )
+				.when( "/quiz", { "templateUrl": "app/views/quiz.html" } )
 
-.config(
-	[ "$routeProvider", "$httpProvider",
-	function ($routeProvider, $httpProvider)
-	{
-		$routeProvider
-
-			.when( "/start", { "templateUrl": "views/start.html" } )
-			.when( "/quiz", { "templateUrl": "views/quiz.html" } )
-
-			// Default ...
-			.otherwise( { "redirectTo": "/start" } );
-	}
+				// Default ...
+				.otherwise( { "redirectTo": "/" } );
+		}
 	]
 );

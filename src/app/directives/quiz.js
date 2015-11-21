@@ -1,16 +1,15 @@
 angular.module( "lernquiz" )
-.directive(
-"quiz",
-[
-	"quizService", "$location",
-	function ( quizService, $location )
-	{
-		return {
-			"restrict": "AE",
-			"templateUrl": "dviews/quiz.html",
-			"scope": {},
-			"link":
-				function (scope, elem, attr)
+	.directive(
+	"quiz",
+	[
+		"quizService", "$location",
+		function ( quizService, $location )
+		{
+			return {
+				"restrict": "AE",
+				"templateUrl": "app/dviews/quiz.html",
+				"scope": {},
+				"link": function ( scope, elem, attr )
 				{
 					scope.question = "";
 					scope.choices = [];
@@ -25,29 +24,28 @@ angular.module( "lernquiz" )
 					// ---
 
 					scope.choosen =
-						function( choice )
+						function ( choice )
 						{
 							choice.choosen = true;
 							scope.showAnswer = true;
 							scope.comment = choice.correct ? "Die Antwort war richtig!" : "Die Antwort war leider falsch!";
 							scope.answerCorrect = choice.correct;
 
-							scope.counts.total++;
-							if ( choice.correct ) scope.counts.correct++;
+							scope.counts.total ++;
+							if ( choice.correct ) scope.counts.correct ++;
 						};
 
 					// ---
 
 					scope.next =
-						function()
+						function ()
 						{
 							quizService.nextQuestion(
-								function( data )
+								function ( data )
 								{
 									if ( data === null )
 									{
-										// TODO: Do redirect!
-										console.log( "TODO: Do redirect!" );
+										$location.url( "/" );
 									}
 									else
 									{
@@ -65,7 +63,7 @@ angular.module( "lernquiz" )
 
 					scope.next();
 				}
-		};
-	}
-]
+			};
+		}
+	]
 );
