@@ -22,7 +22,6 @@ angular
 				{
 					levels = data.levels;
 					level = levels[ data.defaultLevel ];
-					level.selected = true;
 
 					loadCount = data.quizes.length;
 
@@ -106,7 +105,7 @@ angular
 					}
 					else
 					{
-						fn( quizDef, levels ); // TODO
+						fn( quizDef, levels, level );
 					}
 				};
 

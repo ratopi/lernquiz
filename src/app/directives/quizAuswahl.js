@@ -8,7 +8,9 @@ angular.module( "lernquiz" )
 			return {
 				"restrict": "AE",
 				"templateUrl": "app/dviews/quizAuswahl.html",
-				"scope": {},
+				"scope": {
+					"level": "="
+				},
 				"link": function ( scope, elem, attr )
 				{
 					scope.quizes = [];
@@ -33,17 +35,11 @@ angular.module( "lernquiz" )
 					// ---
 
 					quizService.getAvailableQuizes(
-						function ( quizes, levels )
+						function ( quizes, levels, level )
 						{
 							scope.quizes = quizes;
 							scope.levels = levels;
-
-							levels.forEach(
-								function ( l )
-								{
-									if ( l.selected ) scope.level = l;
-								}
-							);
+							scope.level = level;
 
 							setStartAllowed();
 						}

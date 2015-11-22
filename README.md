@@ -7,3 +7,8 @@ Mehr kommt später noch.
 Viel Spaß!
 
 Eine Demo ist unter http://ratopi.github.io/lernquiz/src/index.html
+
+## Licenses
+
+* Code: MIT-License
+* Images: CC-BY-SA
