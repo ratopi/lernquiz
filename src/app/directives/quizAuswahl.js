@@ -8,9 +8,7 @@ angular.module( "lernquiz" )
 			return {
 				"restrict": "AE",
 				"templateUrl": "app/dviews/quizAuswahl.html",
-				"scope": {
-					"level": "="
-				},
+				"scope": {},
 				"link": function ( scope, elem, attr )
 				{
 					scope.quizes = [];
